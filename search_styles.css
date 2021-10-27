@@ -1,0 +1,72 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+
+.container 
+{
+    min-height: 100vh;
+}
+
+.top 
+{
+    height: 10vh;
+    background: linear-gradient(#f5f7fa , #c3cfe2);
+}
+
+
+.middle 
+{
+    height: 60vh;
+    display: flex;
+    background-image: url(images/sushi.jpg);
+    background-size: cover;
+}
+
+.bottom
+{
+    height: 30vh;
+    background: linear-gradient(#f5f7fa , #c3cfe2);
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+
+
+.input {
+    padding-bottom: 10px;
+}
+.input input 
+{
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid #607d8b;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #fff;;
+    background: #f57da5;
+    border-radius: 30px;
+}
+
+.input input:hover
+{
+    color: #607d8b;
+}
+
+.text {
+    font-size: 20px;
+    font-weight: 400px;
+    padding: 5px;
+    color: rgb(158, 158, 158);
+}
