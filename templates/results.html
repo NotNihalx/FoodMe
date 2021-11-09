@@ -1,12 +1,10 @@
+{% extends "base.html" %}
 
-<!doctype html>
+{% block title %}
+Results
+{% endblock title %}
 
-<html lang="en">
-<head>
-     <meta charset="UTF-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Results Page</title>
-</head>
+{%block content %}
 
 <body>
   <h1>Showing first result for: "user query:"</h1>
@@ -40,4 +38,4 @@
 
 
 </body>
-</html>
+{% endblock content %}

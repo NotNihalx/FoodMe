@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang = 'en'>
-    <head>
-        <meta charset="UTF-8">
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <title>Search Page</title>
-        <link rel ='stylesheet' href="search_styles.css">
-    </head>
+{% extends "base.html" %}
+
+{% block title %}
+Search Page
+{% endblock title %}
+
+{%block content %}
+
     <body>
         <div class="container">
 
@@ -15,10 +15,10 @@
                 <div class="content">
                     <form method='POST'>
                         <fieldset>
-                            <legend class ='text'>Please enter restaurant info:</legend>
+                            <legend class =>Please enter restaurant info:</legend>
                             
                             <div class="input">
-                                <label class ='text'>Type of food:<input type="text" name="food_type"></label>
+                                <label class ='text'>Cuisine Type:<input type="text" name="cuisine"></label>
                             </div>
                             
                             <div class="input">
@@ -28,7 +28,7 @@
                             <p class="text"> Or enter your location manually below:</p>
                             
                             <div class='input'>
-                                <label class="text">Location:<input type="text" name="location"></label>
+                                <label class="text">Location:<input type="text" name="loc"></label>
                             </div>
                             
                             <div class='input'>
@@ -45,4 +45,5 @@
         </div>
         
     </body>
-</html>
+
+{% endblock content %}

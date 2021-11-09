@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang = 'en'>
-<head>
-    <meta charset="UTF-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Log in screen</title>
-    <link rel ='stylesheet' href="styles.css">
-</head>
+{% extends "base.html" %}
+
+{% block title %}
+Login
+{% endblock title %}
+
+{%block content %}
+
+
 <body>
     <section>
         <div class="imgBackground">
-            <img src="images/login.jpg">
+            <img src="static/images/login.jpg">
         </div>
 
         <div class="contentBackground">
@@ -36,7 +37,7 @@
                         <p>Not already registered? <a href='#'>Create account</a></p>
                     </div>
                     <div class ="without">
-                        <a href="search.html"> Continue without an account </a> 
+                        <a href="search"> Continue without an account </a> 
                     </div>
                 </form>
             </div>
@@ -44,25 +45,4 @@
     </section>
 </body>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</html>
+{% endblock content %}
