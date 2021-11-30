@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block title %}
@@ -5,6 +6,10 @@ Results
 {% endblock title %}
 
 {%block content %}
+
+<head>
+  {{mymap.js}}
+</head>
 
 
 <body>
@@ -17,25 +22,7 @@ Results
               <p>Address: {{ address }}</p>
               <p>Price: {{ price }}</p>
               <p>Rating: {{ rating }}</p>
-              <p>
-        
-                {% with %}
-
-                {% set location=(lat, lng) %}
-                {% set style="width:900px;height:400px;"%}
-
-                {{
-                googlemap(
-                "simple-map",
-                location.0, location.1,
-                markers=[location,],
-                style=style,
-                zoom=18
-                )
-                }}
-
-                {% endwith %}
-            </p>
+              
 
               <img src="{{ image2 }}" alt="{{ name2 }} image">
               <p>Name: {{ name2 }}</p>
@@ -43,25 +30,6 @@ Results
               <p>Price: {{ price2 }}</p>
               <p>Rating: {{ rating2 }}</p>
               
-              <p>
-        
-                {% with %}
-
-                {% set location=(lat2, lng2) %}
-                {% set style="width:900px;height:400px;"%}
-
-                {{
-                googlemap(
-                "simple-map",
-                location.0, location.1,
-                markers=[location,],
-                style=style,
-                zoom=18
-                )
-                }}
-
-                {% endwith %}
-            </p>
 
               <img src="{{ image3 }}" alt="{{ name3 }} image">
               <p>Name: {{ name3 }}</p>
@@ -70,24 +38,8 @@ Results
               <p>Rating: {{ rating3 }}</p>
 
               <p>
-        
-                {% with %}
-
-                {% set location=(lat3, lng3) %}
-                {% set style="width:900px;height:400px;"%}
-
-                {{
-                googlemap(
-                "simple-map",
-                location.0, location.1,
-                markers=[location,],
-                style=style,
-                zoom=18
-                )
-                }}
-
-                {% endwith %}
-            </p>
+                {{mymap.html}}
+              </p>
 
               <button class = "btn btn-primary" onClick="window.location.reload();">Show another random restaurant</button>
 

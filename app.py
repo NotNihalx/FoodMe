@@ -132,9 +132,27 @@ def results():
         restaurant_coordinates1 = get_coordinates(google_maps_key, f"{option1['address']} {option1['user_entered_location']}")
         restaurant_coordinates2 = get_coordinates(google_maps_key, f"{option2['address']} {option1['user_entered_location']}")
         restaurant_coordinates3 = get_coordinates(google_maps_key, f"{option3['address']} {option1['user_entered_location']}")
-        
+
+        coordinates = [
+            {'latitude' : restaurant_coordinates1['lat'], 'longitude': restaurant_coordinates1['lng']},
+            {'latitude' : restaurant_coordinates2['lat'], 'longitude': restaurant_coordinates2['lng']},
+            {'latitude' : restaurant_coordinates3['lat'], 'longitude': restaurant_coordinates3['lng']},    
+        ]
+
+        testMap = Map(
+            identifier='testmap',
+            lat=coordinates[0]['latitude'],
+            lng=coordinates[0]['longitude'],
+            markers = [(loc['latitude'], loc['longitude']) for loc in coordinates],
+            fit_markers_to_bounds = True,
+            style = 'width:900px;height:400px'
+        )
 
         context = {
+            # Map
+
+            'mymap' : testMap,
+
             # Option 1
             'name': option1['name'],
             'price': option1['price'],
@@ -143,8 +161,7 @@ def results():
             'image': option1['image'],
             'restaurant_type': option1['user_entered_type'],
             'restaurant_location': option1['user_entered_location'],
-            'lat': restaurant_coordinates1['lat'],
-            'lng': restaurant_coordinates1['lng'],
+           
             # Option 2
             'name2': option2['name'],
             'price2': option2['price'],
@@ -153,8 +170,7 @@ def results():
             'image2': option2['image'],
             'restaurant_type': option1['user_entered_type'],
             'restaurant_location': option1['user_entered_location'],
-            'lat2': restaurant_coordinates2['lat'],
-            'lng2': restaurant_coordinates2['lng'],
+          
             # Option 3
             'name3': option3['name'],
             'price3': option3['price'],
@@ -163,8 +179,6 @@ def results():
             'image3': option3['image'],
             'restaurant_type3': option3['user_entered_type'],
             'restaurant_location3': option3['user_entered_location'],
-            'lat3': restaurant_coordinates3['lat'],
-            'lng3': restaurant_coordinates3['lng']
         }
 
         return render_template('results.html', **context)
