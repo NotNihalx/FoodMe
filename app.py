@@ -2,11 +2,13 @@ import re
 from flask import Flask, request, render_template, redirect, url_for, jsonify, flash
 import datetime, os, random, requests
 from yelpapi import YelpAPI
+from flask_googlemaps import GoogleMaps, Map
 
 #init yelp api
 
 #yelp key
 yelp_key = 'pWLFRJGIhT0GzVd_QuUlAj6WhYI1MQH4raO9u6_8VNN0C9YpAus_lq3B8HrrsRinGSdxBFt3pvjPuIoEVoj1hTuHhyDdApOZdRgkdcxNvzxSj4WyZXjqjztGO3AYYHYx'
+google_maps_key = 'AIzaSyBBSt28jTrLVUwrYGpsLESpvxv7hk_Cpqs'
 
 YelpAPI = YelpAPI(yelp_key, timeout_s = 3.0)
 
@@ -15,6 +17,17 @@ restaurant_list = []
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
+GoogleMaps(app, key=google_maps_key)
+
+
+def get_coordinates(API_KEY, address_text):
+    response = requests.get(
+        "https://maps.googleapis.com/maps/api/geocode/json?address="
+        + address_text
+        + "&key="
+        + API_KEY
+    ).json()
+    return response["results"][0]["geometry"]["location"]
 
 
 @app.route('/')
@@ -93,8 +106,6 @@ def search():
 
 def results():
 
-    print(restaurant_list)
-
     if request.method == 'Post':
         # add feature to reset
         pass
@@ -102,23 +113,52 @@ def results():
     else:
 
         option1 = ''
+        option2 = ''
+        option3 = ''
 
         try:
             option1 = restaurant_list[random.randint(0, len(restaurant_list) - 1)]
+            restaurant_list.remove(option1)
+            option2 = restaurant_list[random.randint(0, len(restaurant_list) - 1)]
+            restaurant_list.remove(option2)
+            option3 = restaurant_list[random.randint(0, len(restaurant_list) - 1)]
                 
         except:
             flash("We could not find any restaruants for your cuisine type and/or location within 10 miles. Please try again!")
             print("Database empty")
             return render_template('search.html')
 
+        restaurant_coordinates1 = get_coordinates(google_maps_key, f"{option1['address']} {option1['user_entered_location']}")
+        print(restaurant_coordinates1['lat'])
+        print(restaurant_coordinates1['lng'])
+
         context = {
+            # Option 1
             'name': option1['name'],
             'price': option1['price'],
             'rating': option1['rating'],
             'address': option1['address'],
             'image': option1['image'],
             'restaurant_type': option1['user_entered_type'],
-            'restaurant_location': option1['user_entered_location']
+            'restaurant_location': option1['user_entered_location'],
+            'lat': restaurant_coordinates1['lat'],
+            'lng': restaurant_coordinates1['lng'],
+            # Option 2
+            'name2': option2['name'],
+            'price2': option2['price'],
+            'rating2': option2['rating'],
+            'address2': option2['address'],
+            'image2': option2['image'],
+            'restaurant_type': option1['user_entered_type'],
+            'restaurant_location': option1['user_entered_location'],
+            # Option 3
+            'name3': option3['name'],
+            'price3': option3['price'],
+            'rating3': option3['rating'],
+            'address3': option3['address'],
+            'image3': option3['image'],
+            'restaurant_type3': option3['user_entered_type'],
+            'restaurant_location3': option3['user_entered_location']
         }
 
         return render_template('results.html', **context)
