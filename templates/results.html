@@ -17,13 +17,11 @@ Results
               <p>Address: {{ address }}</p>
               <p>Price: {{ price }}</p>
               <p>Rating: {{ rating }}</p>
-
-              <p>Showing google maps info! </p> 
               <p>
         
                 {% with %}
 
-                {% set location=(44.59116760000001, -123.2529633) %}
+                {% set location=(lat, lng) %}
                 {% set style="width:900px;height:400px;"%}
 
                 {{
@@ -45,12 +43,51 @@ Results
               <p>Price: {{ price2 }}</p>
               <p>Rating: {{ rating2 }}</p>
               
+              <p>
+        
+                {% with %}
+
+                {% set location=(lat2, lng2) %}
+                {% set style="width:900px;height:400px;"%}
+
+                {{
+                googlemap(
+                "simple-map",
+                location.0, location.1,
+                markers=[location,],
+                style=style,
+                zoom=18
+                )
+                }}
+
+                {% endwith %}
+            </p>
 
               <img src="{{ image3 }}" alt="{{ name3 }} image">
               <p>Name: {{ name3 }}</p>
               <p>Address: {{ address3 }}</p>
               <p>Price: {{ price3 }}</p>
               <p>Rating: {{ rating3 }}</p>
+
+              <p>
+        
+                {% with %}
+
+                {% set location=(lat3, lng3) %}
+                {% set style="width:900px;height:400px;"%}
+
+                {{
+                googlemap(
+                "simple-map",
+                location.0, location.1,
+                markers=[location,],
+                style=style,
+                zoom=18
+                )
+                }}
+
+                {% endwith %}
+            </p>
 
               <button class = "btn btn-primary" onClick="window.location.reload();">Show another random restaurant</button>
 

@@ -122,6 +122,7 @@ def results():
             option2 = restaurant_list[random.randint(0, len(restaurant_list) - 1)]
             restaurant_list.remove(option2)
             option3 = restaurant_list[random.randint(0, len(restaurant_list) - 1)]
+            restaurant_list.remove(option3)
                 
         except:
             flash("We could not find any restaruants for your cuisine type and/or location within 10 miles. Please try again!")
@@ -129,8 +130,9 @@ def results():
             return render_template('search.html')
 
         restaurant_coordinates1 = get_coordinates(google_maps_key, f"{option1['address']} {option1['user_entered_location']}")
-        print(restaurant_coordinates1['lat'])
-        print(restaurant_coordinates1['lng'])
+        restaurant_coordinates2 = get_coordinates(google_maps_key, f"{option2['address']} {option1['user_entered_location']}")
+        restaurant_coordinates3 = get_coordinates(google_maps_key, f"{option3['address']} {option1['user_entered_location']}")
+        
 
         context = {
             # Option 1
@@ -151,6 +153,8 @@ def results():
             'image2': option2['image'],
             'restaurant_type': option1['user_entered_type'],
             'restaurant_location': option1['user_entered_location'],
+            'lat2': restaurant_coordinates2['lat'],
+            'lng2': restaurant_coordinates2['lng'],
             # Option 3
             'name3': option3['name'],
             'price3': option3['price'],
@@ -158,7 +162,9 @@ def results():
             'address3': option3['address'],
             'image3': option3['image'],
             'restaurant_type3': option3['user_entered_type'],
-            'restaurant_location3': option3['user_entered_location']
+            'restaurant_location3': option3['user_entered_location'],
+            'lat3': restaurant_coordinates3['lat'],
+            'lng3': restaurant_coordinates3['lng']
         }
 
         return render_template('results.html', **context)
