@@ -11,41 +11,44 @@ Results
   {{mymap.js}}
 </head>
 
-
-<body>
+<body style ='background: linear-gradient(#f5f7fa , #c3cfe2)'>
   <div class="container-fluid">
       <div class="row justify-content-center align-items-center">
           <div class="column lg-6 justify-content-center align-items-center">
-              <h3>Showing random {{ restaurant_type }} restaurants in {{ restaurant_location }}!</h3>
-              <img src="{{ image }}" alt="{{ name }} image">
-              <p>Name: {{ name }}</p>
-              <p>Address: {{ address }}</p>
-              <p>Price: {{ price }}</p>
-              <p>Rating: {{ rating }}</p>
+              <div class ="header"> 
+                <h1>Showing random {{ restaurant_type }} restaurants in {{ restaurant_location }}!</h1>
+              </div>
               
-
-              <img src="{{ image2 }}" alt="{{ name2 }} image">
-              <p>Name: {{ name2 }}</p>
-              <p>Address: {{ address2 }}</p>
-              <p>Price: {{ price2 }}</p>
-              <p>Rating: {{ rating2 }}</p>
+              <div class = "results">
+                <h2>{{ name }}</h2>
+                <img src="{{ image }}" width ="1000" height ="750" alt="{{ name }} image">
+                <h3>{{ address }}</h3>
+                <h3>Price: {{ price }}</h3>
+                <h3>Rating: {{ rating }}</h3>
+              </div>
               
-
-              <img src="{{ image3 }}" alt="{{ name3 }} image">
-              <p>Name: {{ name3 }}</p>
-              <p>Address: {{ address3 }}</p>
-              <p>Price: {{ price3 }}</p>
-              <p>Rating: {{ rating3 }}</p>
-
+              <div class= "results">
+                <h2>{{ name2 }}</h2>
+                <img src="{{ image2 }}" width ="1000" height ="750" alt="{{ name2 }} image">
+                <h3>{{ address2 }}</h3>
+                <h3>Price: {{ price2 }}</h3>
+                <h3>Rating: {{ rating2 }}</h3>
+              </div>
+              
+              <div class='results'>
+                <h2>{{ name3 }}</h2>
+                <img src="{{ image3 }}" width ="1000" height ="750" alt="{{ name3 }} image">
+                <h3>{{ address3 }}</h3>
+                <h3>Price: {{ price3 }}</h3>
+                <h3>Rating: {{ rating3 }}</h3>
+              </div>
+            
               <p>
                 {{mymap.html}}
               </p>
 
-              <button class = "btn btn-primary" onClick="window.location.reload();">Show another random restaurant</button>
+              <button class = "btn btn-primary" onClick="window.location.reload();">Show more options!</button>
 
-              <form method='POST'>
-                  <button class = "btn btn-danger" type="submit" class="submit" value="Start Over" name="button">Start Over</button>
-              </form>
           </div>
       </div>
   </div>

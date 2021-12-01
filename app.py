@@ -4,12 +4,12 @@ import datetime, os, random, requests
 from yelpapi import YelpAPI
 from flask_googlemaps import GoogleMaps, Map
 
-#init yelp api
 
 #yelp key
 yelp_key = 'pWLFRJGIhT0GzVd_QuUlAj6WhYI1MQH4raO9u6_8VNN0C9YpAus_lq3B8HrrsRinGSdxBFt3pvjPuIoEVoj1hTuHhyDdApOZdRgkdcxNvzxSj4WyZXjqjztGO3AYYHYx'
 google_maps_key = 'AIzaSyBBSt28jTrLVUwrYGpsLESpvxv7hk_Cpqs'
 
+#init yelp api
 YelpAPI = YelpAPI(yelp_key, timeout_s = 3.0)
 
 # Global var
@@ -17,6 +17,7 @@ restaurant_list = []
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
+# Init google maps 
 GoogleMaps(app, key=google_maps_key)
 
 
@@ -107,7 +108,6 @@ def search():
 def results():
 
     if request.method == 'Post':
-        # add feature to reset
         pass
 
     else:
@@ -145,7 +145,7 @@ def results():
             lng=coordinates[0]['longitude'],
             markers = [(loc['latitude'], loc['longitude']) for loc in coordinates],
             fit_markers_to_bounds = True,
-            style = 'width:900px;height:400px'
+            style = 'width:1000px;height:750px'
         )
 
         context = {
